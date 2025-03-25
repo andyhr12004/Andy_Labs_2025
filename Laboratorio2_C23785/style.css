@@ -1,8 +1,36 @@
+@charset "utf-8"; /* asi venia en el doc final del curso*/
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #808080;
+}
+
+a {
+    color: #4A4A4A;
+}
+
+    a:hover {
+        color: #fff;
+        background-color: #FFD700;
+        text-decoration: none;
+    }
+
+h1, h2, h3 {
+    padding: 0;
+}
+
+p {
+    padding: 0;
+}
+
+img {
+    width: 60%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
 }
 
 header {
@@ -12,14 +40,72 @@ header {
     padding: 20px 0;
 }
 
-.header-content h1 {
-    margin: 0;
-    font-size: 2.5em;
-    color: #FFD700;
+    header .header-content h1 {
+        margin: 0;
+        font-size: 2.5em;
+        color: #FFD700;
+    }
+
+    header .header-content p {
+        margin: 10px 0 0;
+        font-size: 1em;
+        color: white;
+    }
+
+nav {
+    background-color: #FF0000;
+    padding: 10px 0;
 }
 
-.header-content p {
-    margin: 10px 0 0;
-    font-size: 1em;
-    color: white;
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+        nav ul li {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+            nav ul li a {
+                display: block;
+                color: white;
+                text-decoration: none;
+                padding: 15px;
+                transition: background-color 0.3s;
+            }
+
+                nav ul li a:hover {
+                    background-color: #FFD700;
+                    color: #4A4A4A;
+                }
+
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #D3D3D3;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
+
+section {
+    margin-bottom: 20px;
+}
+
+    section h1, section h2 {
+        color: #4A4A4A;
+    }
+
+footer {
+    background-color: transparent;
+    color: black;
+    text-align: center;
+    padding: 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
