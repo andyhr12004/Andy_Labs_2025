@@ -48,7 +48,7 @@ methods: {
     },
 
     obtenerTareas() { 
-axios.get("https://localhost:7019/api/Paises").then(
+axios.get("https://localhost:5000/api/Paises").then(
  (response) => { 
 this.paises = response.data; 
 }); 
