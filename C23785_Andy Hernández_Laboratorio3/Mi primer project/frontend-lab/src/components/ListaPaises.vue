@@ -42,11 +42,7 @@
         data() {
   return {
     paises: [
-      { nombre: "Costa Rica", continente: "América", idioma: "Español" },
-      { nombre: "Japón", continente: "Asia", idioma: "Japonés" },
-      { nombre: "Corea del Sur", continente: "Asia", idioma: "Coreano" },
-      { nombre: "Italia", continente: "Europa", idioma: "Italiano" },
-      { nombre: "Alemania", continente: "Europa", idioma: "Alemán" },
+     
     ],
   };
 },
@@ -57,7 +53,7 @@ methods: {
     },
 
     obtenerTareas() { 
-axios.get("https://localhost:5000/api/Paises").then(
+axios.get("http://localhost:5000/api/Paises").then(
  (response) => { 
 this.paises = response.data; 
 }); 

@@ -1,3 +1,4 @@
+
 <template>
    <div class="d-flex justify-content-center align-items-center vh-100">
   <div class="card p-4 shadow" style="max-width: 400px; width: 100%">
@@ -34,6 +35,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
@@ -42,8 +44,22 @@ export default {
   },
   methods: {
     guardarPais() {
-      console.log("Datos a guardar:", this.datosFormulario);
-    },
+  console.log("Datos a guardar:", this.datosFormulario);
+  
+  axios.post("http://localhost:5000/api/Paises", {
+    nombre: this.datosFormulario.nombre,
+    continente: this.datosFormulario.continente,
+    idioma: this.datosFormulario.idioma
+  })
+  .then(function (response) {
+    console.log(response);
+    window.location.href = "/"; 
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+},
+
   },
 };
 </script>
