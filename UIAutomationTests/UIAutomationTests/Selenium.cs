@@ -66,6 +66,17 @@ namespace UIAutomationTests
             System.Threading.Thread.Sleep(6000);
             Assert.IsTrue(filas.Any(), "El país 'Chekoslovakia' no aparece en la tabla después de crearlo.");
 }
+        
+        [Test]
+        public void Table_Exist_Data_Test()
+        {
+            var url = "http://localhost:8080/";
+            _driver.Navigate().GoToUrl(url);
+            _driver.Manage().Window.Maximize();
+
+            var filas = _driver.FindElements(By.XPath("//table/tbody/tr"));
+            Assert.IsTrue(filas.Count > 0, "La tabla de países no contiene ninguna fila.");
+        }
 
 
         [TearDown]
