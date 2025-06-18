@@ -14,7 +14,7 @@ namespace UIAutomationTests
         {
             // Configura opciones si quieres, por ahora con las defaults
             var options = new EdgeOptions();
-            // Esto usará Edge (Chromium)
+            // Esto usarï¿½ Edge (Chromium)
             _driver = new EdgeDriver(options);
         }
 
@@ -30,7 +30,7 @@ namespace UIAutomationTests
             // 3. Act
             _driver.Navigate().GoToUrl(url);
 
-            // 4. Assert básico que el driver esté vivo
+            // 4. Assert bï¿½sico que el driver estï¿½ vivo
             Assert.IsNotNull(_driver, "El driver de Edge no debe ser nulo");
         }
         [Test]
@@ -46,7 +46,7 @@ namespace UIAutomationTests
             _driver.Navigate().GoToUrl(url);
 
             var titulo = _driver.FindElement(By.TagName("h1")).Text;
-            Assert.AreEqual("Lista de países", titulo, "El título principal no es el esperado.");
+            Assert.AreEqual("Lista de paï¿½ses", titulo, "El tï¿½tulo principal no es el esperado.");
 
         }
         [Test]
@@ -61,44 +61,47 @@ namespace UIAutomationTests
             // 3. Act
             _driver.Navigate().GoToUrl(url);
 
-            var botonAgregar = _driver.FindElement(By.XPath("//button[contains(text(),'Agregar país')]"));
-            Assert.IsTrue(botonAgregar.Displayed, "El botón 'Agregar país' no está visible.");
+            var botonAgregar = _driver.FindElement(By.XPath("//button[contains(text(),'Agregar paï¿½s')]"));
+            Assert.IsTrue(botonAgregar.Displayed, "El botï¿½n 'Agregar paï¿½s' no estï¿½ visible.");
 
         }
         [Test]
-        public void Create_New_País_Test()
-        {
-            // 1. zabrir la app
-            var url = "http://localhost:8080/";
-            _driver.Manage().Window.Maximize();
-            _driver.Navigate().GoToUrl(url);
+        public void Create_New_Pais_Test()
+       {
+    var url = "http://localhost:8080/";
+    _driver.Manage().Window.Maximize();
+    _driver.Navigate().GoToUrl(url);
 
-            // 2. clic en "Agregar país"
-            var botonAgregar = _driver.FindElement(By.XPath("//button[contains(text(),'Agregar país')]"));
-            botonAgregar.Click();
+    // 1. Clic en "Agregar paÃ­s"
+    var botonAgregar = _driver.FindElement(By.XPath("//button[contains(text(),'Agregar paÃ­s')]"));
+    botonAgregar.Click();
 
-            // 3. esperar a que cargue el formulario
-            var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
+    // 2. Esperar el formulario y llenar los campos con datos Ãºnicos
+    var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
+    wait.Until(driver => driver.FindElement(By.Id("name"))).SendKeys("Chekoslovakia");
+    wait.Until(driver => driver.FindElement(By.Id("continente"))).SendKeys("OceanÃ­a");
+    wait.Until(driver => driver.FindElement(By.Id("idioma"))).SendKeys("Chekoslovoquiano");
 
-            // 4. llenar campos del formulario
-            wait.Until(driver => driver.FindElement(By.Id("name"))).SendKeys("Brasil"); // id real = "name"
-            wait.Until(driver => driver.FindElement(By.Id("continente"))).SendKeys("América");
-            wait.Until(driver => driver.FindElement(By.Id("idioma"))).SendKeys("Portugués");
-            System.Threading.Thread.Sleep(4000); //esto acá lo agrego para que visualmente en el video se vea mejor
+    System.Threading.Thread.Sleep(2000); // Pausa visual opcional
 
-            // 5. clic en el botón "Guardar"
-            var botonGuardar = _driver.FindElement(By.XPath("//button[contains(text(),'Guardar')]"));
-            botonGuardar.Click();
+    // 3. Clic en "Guardar"
+    var botonGuardar = _driver.FindElement(By.XPath("//button[contains(text(),'Guardar')]"));
+    botonGuardar.Click();
 
-            // 6. } si llega aquí, el clic fue exitoso
-            Assert.Pass("Formulario llenado y botón 'Guardar' clickeado correctamente.");
-        }
+    // 4. Esperar redirecciÃ³n y carga de tabla
+    System.Threading.Thread.Sleep(2000); // si no tienes wait por redirecciÃ³n, deja esto
+
+    // 5. Buscar el paÃ­s en la tabla
+    var filas = _driver.FindElements(By.XPath("//td[contains(text(),'Nauru')]"));
+            System.Threading.Thread.Sleep(8000);
+            Assert.IsTrue(filas.Any(), "El paÃ­s 'Nauru' no aparece en la tabla despuÃ©s de crearlo.");
+}
 
 
         [TearDown]
         public void TearDown()
         {
-            // Asegúrate de cerrar Edge al terminar
+            // Asegï¿½rate de cerrar Edge al terminar
             _driver.Quit();
         }
     }
